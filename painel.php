@@ -6,10 +6,11 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-include 'conexao.php';
+require_once 'conexao.php';
 
 $sql = "SELECT * FROM agendamentos";
-$result = $conn->query($sql);
+$stmt = $conn->query($sql);
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ $result = $conn->query($sql);
             <th>Barbeiro</th>
             <th>Ações</th>
         </tr>
-        <?php while ($row = $result->fetch_assoc()): ?>
+        <?php foreach ($result as $row): ?>
             <tr>
                 <td><?php echo $row['id_agendamento']; ?></td>
                 <td><?php echo $row['nome_cliente']; ?></td>
@@ -50,7 +51,7 @@ $result = $conn->query($sql);
                     <a id="excluir" href="excluir.php?id=<?php echo $row['id_agendamento']; ?>" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
                 </td>
             </tr>
-        <?php endwhile; ?>
+        <?php endforeach; ?>
     </table>
 </body>
 </html>

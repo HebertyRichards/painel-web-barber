@@ -6,19 +6,19 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-include 'conexao.php';
+require_once 'conexao.php';
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "DELETE FROM agendamentos WHERE id_agendamento = $id";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Agendamento excluído com sucesso!";
+    $stmt = $conn->prepare("DELETE FROM agendamentos WHERE id_agendamento = ?");
+    if ($stmt->execute([$id])) {
         header('Location: painel.php');
         exit();
     } else {
-        echo "Erro ao excluir agendamento: " . $conn->error;
+        echo "Erro ao excluir agendamento.";
     }
+} else {
+    echo "ID do agendamento não informado.";
 }
 ?>

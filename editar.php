@@ -6,16 +6,19 @@ if (!isset($_SESSION['usuario'])) {
     exit();
 }
 
-include 'conexao.php';
+require_once 'conexao.php';
+
+$row = null;
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $sql = "SELECT * FROM agendamentos WHERE id_agendamento = $id";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
+    $stmt = $conn->prepare("SELECT * FROM agendamentos WHERE id_agendamento = ?");
+    $stmt->execute([$id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])) {
+    $id = $_GET['id'];
     $nome_cliente = $_POST['nome_cliente'];
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
@@ -24,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $servico = $_POST['servico'];
     $barbeiro = $_POST['barbeiro'];
 
-    $updateSql = "UPDATE agendamentos SET nome_cliente='$nome_cliente', telefone='$telefone', email='$email', data_agendamento='$data_agendamento', horario='$horario', servico='$servico', barbeiro='$barbeiro' WHERE id_agendamento = $id";
-    if ($conn->query($updateSql) === TRUE) {
-        echo "Agendamento atualizado com sucesso!";
+    $updateSql = "UPDATE agendamentos SET nome_cliente = ?, telefone = ?, email = ?, data_agendamento = ?, horario = ?, servico = ?, barbeiro = ? WHERE id_agendamento = ?";
+    $stmt = $conn->prepare($updateSql);
+    if ($stmt->execute([$nome_cliente, $telefone, $email, $data_agendamento, $horario, $servico, $barbeiro, $id])) {
         header('Location: painel.php');
         exit();
     } else {
-        echo "Erro ao atualizar agendamento: " . $conn->error;
+        echo "Erro ao atualizar agendamento.";
     }
 }
 ?>
@@ -45,6 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <h1>Editar Agendamento</h1>
+
+    <?php if ($row): ?>
     <form method="POST">
         <label for="nome_cliente">Nome Cliente:</label>
         <input type="text" id="nome_cliente" name="nome_cliente" value="<?php echo $row['nome_cliente']; ?>" required><br><br>
@@ -69,5 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <input type="submit" value="Atualizar">
     </form>
+    <?php else: ?>
+        <p>Agendamento não encontrado.</p>
+    <?php endif; ?>
 </body>
 </html>

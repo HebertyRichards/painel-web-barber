@@ -1,9 +1,10 @@
 <?php
-$config = include(__DIR__ . '/.env.php'); 
+require_once 'config.php';
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-  }
+try {
+  $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+  die("Erro na conexão: " . $e->getMessage());
+}
 ?>
