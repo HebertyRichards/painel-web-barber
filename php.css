@@ -1,0 +1,141 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: black;
+  color: white;
+}
+
+body {
+  text-align: center;
+}
+
+/* painel */
+table {
+  margin: 0 auto;
+  margin-top: 3%;
+  box-shadow: 0 0 10px #444;
+  background-color: #111;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+tr {
+  background-color: #222;
+}
+#excluir,
+#editar,
+#sair {
+  color: white;
+  transition: 0.5s;
+  border: 1px solid black;
+  padding: 0 5px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin: 0 5px;
+  background-color: #820ad1;
+  text-decoration: none;
+}
+
+#excluir:hover,
+#editar:hover,
+#sair:hover {
+  background-color: #8e0ee4;
+}
+
+/* pagina de editar */
+form {
+  background-color: #111;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #444;
+  margin: 0 auto;
+  width: 50%;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #222;
+  color: #fff;
+}
+
+input[type="password"] {
+  margin-top: 10px;
+}
+
+input[type="submit"],
+button[type="submit"] {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  transition: 0.5s;
+  background-color: #820ad1;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  background-color: #8e0ee4;
+}
+
+/* login */
+
+@media (max-width: 800px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  th,
+  td {
+    border: 1px solid white;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+
+  td {
+    position: relative;
+    text-align: left;
+  }
+
+  td::before {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 45%;
+    white-space: nowrap;
+    font-weight: bold;
+    content: attr(data-label);
+  }
+}
