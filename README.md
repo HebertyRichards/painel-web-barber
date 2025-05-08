@@ -29,3 +29,7 @@ Este projeto consiste em um **painel administrativo desenvolvido em PHP** para a
 
 ---
 
+## ✏️ Infos
+
+- Hospedagem feita na InfinityFree
+- Deploy: http://sistema-php.rf.gd/painel.php
