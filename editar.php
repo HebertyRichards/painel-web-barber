@@ -43,11 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Agendamento</title>
+    <title>Editar Agendamento - Barbearia Freitas</title>
     <link rel="stylesheet" href="php.css">
 </head>
 <body>
-    <h1>Editar Agendamento</h1>
+    <h1>Editar Agendamento - Barbearia Freitas</h1>
 
     <?php if ($row): ?>
     <form method="POST">

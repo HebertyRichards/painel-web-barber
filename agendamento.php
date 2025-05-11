@@ -18,12 +18,12 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo</title>
+    <title>Agendamentos - Barbearia Freitas</title>
     <link rel="stylesheet" href="php.css">
 </head>
 <body>
-    <h1>Painel Administrativo - Agendamentos</h1>
-    <a id="sair" href="logout.php">Sair</a>
+    <h1>Painel Agendamentos - Barbearia Freitas</h1>
+    <a id="sair" href="index.php">Início</a>
     <table>
         <tr>
             <th>ID</th>

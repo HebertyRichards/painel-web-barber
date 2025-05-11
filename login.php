@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($usuario == 'admin' && $senha == 'senha123') {
         $_SESSION['usuario'] = $usuario; 
-        header('Location: painel.php'); 
+        header('Location: index.php'); 
         exit();
     } else {
         $erro = 'Credenciais inválidas!';
@@ -21,10 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo - Login</title>
+    <title>Painel AdministrativB - Login</title>
     <link rel="stylesheet" href="php.css">
 </head>
 <body>
+    <h2>Painel Administrativo - Barbearia Freitas</h2>
     <form method="POST">
         <input type="text" name="usuario" placeholder="Usuário" required>
         <input type="password" name="senha" placeholder="Senha" required>
